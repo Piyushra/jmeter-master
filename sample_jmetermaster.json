@@ -1,0 +1,42 @@
+{
+  "schedule": "R1//P10Y",
+  "name": "jmeter-master","container": {
+    "type": "DOCKER",
+    "image": "engci-docker.cisco.com:5915/prakhund/jm-shell-temp",
+"network":"BRIDGE",
+"parameters":[
+{
+"key":"net",
+"value":"weave"
+}
+],
+    "volumes": [
+      {
+        "containerPath": "/logs",
+        "hostPath": "/home/cloud-user/iotsp-jmeter/master/logs",
+        "mode": "RW"
+      },
+{
+        "containerPath": "/input_data",
+        "hostPath": "/home/cloud-user/iotsp-jmeter/master/inputdata",
+        "mode": "RW"},
+{
+        "containerPath": "/scripts",
+        "hostPath": "/home/cloud-user/iotsp-jmeter/master/scripts",
+        "mode": "RW"
+      }
+    ]
+},
+"environmentVariables": [
+        { "name" : "INPUT_FILE_NAME",
+          "value": "Visit_Tutorials_Point.jmx"
+},
+        {"name":"OUTPUT_FILE_NAME", "value": "Visit_output.jtl"},
+{"name":"MARATHON_SERVER","value":"10.203.63.162"}
+    ],
+
+  "cpus": "0.5",
+  "mem": "512",
+  "instances":"1",
+"command":"/MainScriptJmeter.sh"
+}

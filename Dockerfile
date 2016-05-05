@@ -31,6 +31,7 @@ ENV JMETER_PATH /var/lib/apache-jmeter-2.13/bin/
 # Create mount point for script, data and log files
 VOLUME ["/scripts"]
 VOLUME ["/logs"]
+VOLUME ["/user_libs"]
 
 # Use a predefined configuration.  This sets the contract for connecting to jmeter servers.
 ADD jmeter.properties /var/lib/apache-jmeter-2.13/bin/
@@ -41,6 +42,9 @@ COPY MainScriptJmeter.sh /MainScriptJmeter.sh
 
 # Provide all the JMX to the docker build
 COPY scripts/*.jmx /scripts/
+
+# Provide all the dependent JARs
+COPY user_libs /user_libs/
 
 # Override this environment variable to give the JMX file name you want to run
 ENV INPUT_FILE_NAME Default.jmx

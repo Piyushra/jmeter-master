@@ -19,7 +19,7 @@
 #        not get expanded (probably because it is in a string literal).
 
 # Use jmeter-base as the foundation
-FROM vaibhavja/jmeter-docker-base
+FROM engci-docker.cisco.com:5915/prakhund/jmeter-base
 
 MAINTAINER Piyush
 
